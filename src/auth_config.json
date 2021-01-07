@@ -1,0 +1,5 @@
+{
+  "domain": "todoplus.auth0.com",
+  "clientId": "WwNwooqaSV6F4EB50s6ZtfaH30omsLdc",
+  "audience": "https://todoplus.auth0.com/api/v2/"
+}

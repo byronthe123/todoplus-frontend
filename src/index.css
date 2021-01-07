@@ -1,0 +1,674 @@
+/* html { 
+  overflow-y: auto;
+} */
+
+/* @import "~animate.css/animate.css"; */
+
+* {
+    font-family: 'Electrolize', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #252839; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #10121a; 
+}
+  
+  .container-fluid {
+    display: table;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  /*---------------------- PROJECTS ------------------------*/
+  
+  .show-on-hover-project {
+    opacity: 0;
+      transition: all 0.5s;
+  }
+  
+  .project-item:hover .show-on-hover-project {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  .row-projects-list {
+    background-color: #b5b5b7;
+  }
+  
+  .div-projects {
+    background-color: #b5b5b7;
+  }
+  
+  .project {
+    /* border: 1px black solid; */
+    width: 100%;
+    /* background-color: red; */
+  }
+  
+  .add-project {
+    opacity: 0;
+      transition: all 0.5s;
+  }
+  
+  .div-project-list:hover .add-project{
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  .completed-projects {
+    opacity: 0.5;
+  }
+  
+  /*---------------------- TASKS ------------------------*/
+  
+  .add-task {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  
+  .div-tasks-list:hover .add-task {
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  .div-task:hover {
+    cursor: pointer;
+  }
+  
+  .task-card {
+    background-color: #dededf;
+  }
+  
+  .completed-task-card {
+    background: rgba(255, 252, 252, 0.50);
+    color: green;
+  }
+  
+  .completed-subtask {
+    opacity: 0.5;
+    /* color: green; */
+  }
+  
+  .show-on-hover-tasks {
+    opacity: 0;
+      transition: all 0.5s;
+  }
+  
+  .task-card:hover .show-on-hover-tasks{
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  .selected-task {
+    background-color: #f2b632;
+  }
+  
+  .taskdiv-logo {
+    background-image: url('/assets/img/logo2.svg'); 
+    background-size: cover;
+    background-position: center; 
+    height: 90%;
+    width: 100%;
+  }
+
+  .focus-hover {
+    transition: transform .2s;
+  }
+
+  .focus-hover:hover {
+    transform: scale(1.2);
+    color: white;
+  }
+
+  .check-complete-task:hover {
+    cursor: pointer;
+  }
+  
+  /*---------------------- SUBTASKS ------------------------*/
+  
+  .add-subtask {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  
+  .div-subtask-list:hover .add-subtask {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  a, a:hover {
+    color: inherit;
+    text-decoration: none; 
+  }
+  
+  .hint {
+    color: black;
+  }
+  
+  .div-task-list {
+    background-color: #F4F4F6;
+  }
+  
+  .div-subtask-list {
+    background-color: #252839;
+    background-color: #677077;
+    color: white;
+  }
+
+  .col-subtask-list {
+    background-color: #252839;
+    background-color: #677077;
+    color: white;
+  }
+
+  .edit-subtask {
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  .edit-subtask:hover {
+    cursor: pointer;
+    transform: scale(1.2)
+  }
+
+  .div-subtask-item:hover .edit-subtask {
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+   /*---------------------- Note BAR ------------------------*/
+
+  .add-note {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  
+  .div-notes-list:hover .add-note {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  
+  /*---------------------- STATUS BAR ------------------------*/
+  .status-bar {
+    /* background-color: #677077; */
+    background-color: #252839;
+    height: 110px;
+  }
+  
+  .status-bar-text {
+    margin-left: 130px;
+  }
+  
+  .status-percent {
+    color: #f2b632;
+    position: absolute;
+    top: 4px;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 24px;
+  }
+
+  .sp-left-1 {
+    left: 17%;
+  }
+
+  .sp-left-2 {
+    left: 14.5%;
+  }
+
+  .sp-left-3 {
+    left: 10%;
+  }
+
+  .navbar {
+    color: white;
+    /* background-color: #252839; */
+    background-color: #677077;
+  }
+  
+  .hover {
+    cursor: pointer;
+  }
+  
+  .title {
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+  }
+  
+  .title:hover {
+    color: #f2b632;
+    cursor: pointer;
+  }
+  
+  .dropdown:hover {
+    cursor: pointer;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /*---------------------- STATUS BAR GRAPH ------------------------*/
+  .status-bar-graph-wrapper1 {
+    height: 20px;
+    width: 0px;
+    position: relative;
+  }
+  
+  .statusbar-graph > .rv-xy-plot__inner {
+    width: 150px;
+    position: absolute;
+    left: -25%;
+    top: -5%;
+  }
+  
+  .out-time {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+  }
+  
+  .out-time-container {
+    position: absolute;
+    right: 35%;
+    top: 37%;
+    min-width: 199px;
+    border: 1px red;
+    background-color: red;
+  }
+  
+  /*---------------------- STATS ------------------------*/
+  .positiveDelta {
+    color: green;
+  }
+  
+  .negativeDelta {
+    color: red;
+  }
+  
+  .stats-subtitle {
+    color: black;
+    font-family: 'Electrolize', sans-serif;
+  }
+  /*---------------------- BUTTONS ------------------------*/
+  .buttonless {
+    color: inhert;  
+  }
+  
+  .buttonless:hover {
+    cursor: pointer;
+  }
+  
+  /*---------------------- TIMER MODAL ------------------------*/
+  /* i.fas.fa-stopwatch:before {
+    content: none;
+  } */
+  .timer-modal-graph > .rv-xy-plot__inner {
+    width: 300px;
+    position: absolute;
+    left: 22%;
+  }
+
+  .productivity-session-timer {
+      position: absolute;
+      top: 37%;
+      left: 40%;
+  }
+
+  .productivity-modal-sub {
+      margin-bottom: 0;
+      font-size: 16px;
+  }
+  
+  /* .status-bar-graph-wrapper1 {
+    height: 20px;
+    width: 0px;
+    position: relative;
+  } */
+  
+  
+  /*---------------------- GOAL MODAL ------------------------*/
+  .modal-content {
+    text-align: center;
+  }
+  
+  .btn-cancel {
+    background: none;
+    border: none;
+    color: black;
+  }
+  
+  .btn-cancel:hover {
+    background: none;
+    color: #252839;
+  }
+
+  .attachment:hover {
+    cursor: pointer;
+    color: #f2b632;
+  }
+
+  .notification-body:hover {
+    cursor: pointer;
+  }
+
+  .notification-card {
+    background-color: white;
+    transition: 0.5s;
+  }
+
+  .notification-card:hover {
+    background-color: #f2b632;
+  }
+  
+  /*---------------------- HOME ------------------------*/
+  .home {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    background: linear-gradient(-45deg, #f5f5f8, #f2b632,#b5b5b7, #f5f5f8);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 5s ease infinite;
+    -moz-animation: Gradient 5s ease infinite;
+    animation: Gradient 5s ease infinite;
+  }
+
+  .loading-background {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    color: #0f0f0f;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid red;
+  }
+  
+  .sub-home {
+    background-image: url('/assets/img/background.svg'); 
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  
+  @-webkit-keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  @-moz-keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  @keyframes Gradient {
+      0% {
+          background-position: 0% 50%
+      }
+      50% {
+          background-position: 100% 50%
+      }
+      100% {
+          background-position: 0% 50%
+      }
+  }
+  
+  .login {
+    position: absolute;
+    bottom: 5%;
+  }
+  
+  .btn-login {
+    background-color: #b5b5b7;
+    color: black;
+    border: #252839;
+  }
+  
+  .btn-login:hover {
+    background-color: #677077;
+    color: white;
+  }
+  
+  /*---------------------- GENERAL STYLES ------------------------*/
+  body, html {
+    min-height: 100%;
+    /* background-color: #FFCC00; */
+    height: 100vh;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .container-fluid {
+    background-color: #F4F4F6;
+  }
+  
+  .full-height {
+    min-height: 100%;
+    height: 100%;
+  }
+
+  .main-row {
+      height: 100vh;
+  }
+  
+  .vertical-bar-series-example:hover {
+    cursor: pointer;
+  } 
+
+  .col-animation {
+    transition: all 0.5s ease-in-out;
+  }
+
+
+  .full-width {
+    width:100%;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .inline-block {
+    display: inline-block;
+  }
+  
+  .align-right {
+    float: right;
+    padding: 0 5px 0 5px;
+  }
+  
+  .none {
+    background: none;
+  }
+  
+  .subtitle {
+    color: black;
+    font-family: 'Electrolize', sans-serif;
+    background-color: #9c9c9c;
+    background-blend-mode: darken;
+    /* text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white; */
+  }
+  
+  .task-subtitle {
+    color: black;
+    font-family: 'Electrolize', sans-serif;
+    background-color: rgb(204, 204, 206);
+    background-blend-mode: darken;
+  }
+  
+  .subtask-subtitle {
+    color: white;
+    font-family: 'Electrolize', sans-serif;
+    background-color: #5b6268;
+    background-blend-mode: darken;
+  }
+  
+  .dropdown-item:active {
+    background-color: #5b6268;
+  }
+
+  .btn-submit {
+      background-color: #f2b632 !important;
+      color: black !important;
+      font-weight: bold;
+  }
+
+.btn-submit:hover {
+    background-color: #dda302da !important;
+    color: black !important;
+}
+
+.project:hover {
+    cursor: pointer;
+}
+
+.selected-project {
+    background-color: #a9a9acc7;
+    width: 98%;
+}
+
+.fa-edit {
+    transition: 0.2s;
+}
+
+.fa-edit:hover {
+    transform: scale(1.2);
+}
+  
+  /* .button:active {
+    color: #5b6268;
+  } */
+  
+  /* * {
+    border: 0.2px red solid;
+  }  */
+  
+
+  .input-edit-task {
+      color: white;
+      font-size: 1.4em;
+      font-weight: bold;
+      background-color: inherit;
+      width: 100%;
+      border: none;
+  }
+
+  .input-edit-task:active {
+      border: none;
+  }
+
+  a, a:hover, a:active {
+      text-decoration: none !important;
+  }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% {  transform: rotate(359deg); }
+}
+.spin {
+    animation: spin 2s linear infinite;
+
+}
+
+.notification-view-task {
+    cursor: pointer;
+}
+
+.fa-times:hover {
+    cursor: pointer;
+}
+
+.snooze-notification:hover {
+    cursor: pointer;
+}
+
+.edit-note {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.edit-note:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.div-edit-note:hover .edit-note {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.task-details-scroll {
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    padding-right: 5px;
+}
+
+@media (min-width: 1200px) {
+    .task-details-scroll {
+        height: 70vh;
+    }
+}
+
+@media (min-width: 1600px) {
+    .task-details-scroll {
+        height: 80vh;
+    }
+}
