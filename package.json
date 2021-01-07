@@ -37,7 +37,6 @@
   },
   "scripts": {
     "start": "npm start",
-    "install": "npm install",
     "build": "npm build",
     "heroku-postbuild": "npm build"
   },
