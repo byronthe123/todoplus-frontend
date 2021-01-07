@@ -36,9 +36,10 @@
     "reactstrap": "^8.7.1"
   },
   "scripts": {
-    "start": "npm run start",
-    "build": "npm run build",
-    "heroku-postbuild": "npm run build"
+    "start": "npm start",
+    "install": "npm install",
+    "build": "npm build",
+    "heroku-postbuild": "npm build"
   },
   "eslintConfig": {
     "extends": "react-app"
