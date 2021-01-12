@@ -27,10 +27,6 @@ export default () => {
         }
     }, [productivityGoal, productivityAchieved]);
 
-    const resolveLeftPosition = () => {
-
-    }
-
     return (
         <Row className="status-bar">
             <Col md={4} className="justify-content-end">
@@ -57,7 +53,7 @@ export default () => {
                 </Row>
             </Col>
             <Col lg={4} className='text-center align-middle'>
-                <NavLink to='/profile/todos'><h1 className='title'>To Do Plus</h1></NavLink>
+                <NavLink to='/todos'><h1 className='title'>To Do Plus</h1></NavLink>
             </Col>
             <Col lg={4}>
                 <NavBar/>

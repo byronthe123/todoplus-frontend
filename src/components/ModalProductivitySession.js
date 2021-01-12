@@ -10,14 +10,14 @@ export default () => {
     const { timeFormatter, modalSessionOpen, setModalSessionOpen, createProductivityEntry } = goals;
     const { selectedTask } = tasks;
     const [isRunning, setIsRunning] = useState(false);
-    const [totalSeconds, setTotalSeconds] = useState(5);
-    const [seconds, setSeconds] = useState(5);
+    const [totalSeconds, setTotalSeconds] = useState(1500);
+    const [seconds, setSeconds] = useState(1500);
 
     const toggle = () => setModalSessionOpen(!modalSessionOpen);
 
     useEffect(() => {
-        setTotalSeconds(5);
-        setSeconds(5);
+        setTotalSeconds(1500);
+        setSeconds(1500);
         setIsRunning(false);
     }, [modalSessionOpen]);
 

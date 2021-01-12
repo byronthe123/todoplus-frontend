@@ -342,7 +342,7 @@ body {
   .productivity-session-timer {
       position: absolute;
       top: 37%;
-      left: 40%;
+      left: 38%;
   }
 
   .productivity-modal-sub {
@@ -661,14 +661,107 @@ body {
     padding-right: 5px;
 }
 
+@media (min-width: 1000px) {
+    .task-details-scroll {
+        height: 70vh;
+    }
+
+    .sp-left-1 {
+        left: 40%;
+    }
+
+    .sp-left-2 {
+        left: 30%;
+    }
+
+    .sp-left-3 {
+        left: 20%;
+    }
+    
+}
+
 @media (min-width: 1200px) {
     .task-details-scroll {
         height: 70vh;
     }
+
+    .sp-left-1 {
+        left: 30%;
+    }
+
+    .sp-left-2 {
+        left: 25%;
+    }
+
+    .sp-left-3 {
+        left: 20%;
+    }
+    
+}
+
+@media (min-width: 1400px) {
+
+    .sp-left-1 {
+        left: 25%;
+    }
+    
+    .sp-left-2 {
+        left: 22.5%;
+    }
+
+    .sp-left-3 {
+        left: 16%;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .sp-left-1 {
+        left: 22%;
+    }
+
+    .sp-left-2 {
+        left: 22%;
+    }
+
+    .sp-left-3 {
+        left: 14%;
+    }
+    
 }
 
 @media (min-width: 1600px) {
     .task-details-scroll {
         height: 80vh;
+    }
+
+    .sp-left-1 {
+        left: 20%;
+    }
+
+    .sp-left-2 {
+        left: 20%;
+    }
+
+    .sp-left-3 {
+        left: 12%;
+    }
+}
+
+@media (min-width: 1800px) {
+    .task-details-scroll {
+        height: 80vh;
+    }
+
+    .sp-left-1 {
+        left: 20%;
+    }
+
+    .sp-left-2 {
+        left: 18%;
+    }
+
+    .sp-left-3 {
+        left: 10%;
     }
 }

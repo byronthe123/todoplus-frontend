@@ -14,8 +14,8 @@ export const AppContext = React.createContext();
 export default (props) => {
 
     const { isLoading, error, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
-    const baseApiUrl = 'https://todoplus-backend.herokuapp.com/api';
-    // const baseApiUrl = 'http://localhost:3001/api';
+    // const baseApiUrl = 'https://todoplus-backend.herokuapp.com/api';
+    const baseApiUrl = 'http://localhost:3001/api';
     const { addToast } = useToasts();
     const [dateTime, setDateTime] = useState(new Date());
 
@@ -42,6 +42,7 @@ export default (props) => {
     const [currentProductivityRecord, setCurrentProductivityRecord] = useState({});
     const [modalSessionOpen, setModalSessionOpen] = useState(false);
     const [goalSuggestion, setGoalSuggestion] = useState('');
+    const [weeklyGoalSet, setWeeklyGoalSet] = useState(false);
 
     const handleSetGoal = (goalTypeToday) => {
         setGoalTypeToday(goalTypeToday);
@@ -76,6 +77,7 @@ export default (props) => {
             updateUser(userData, setUserData, 'weeklyProductivityGoal', seconds);
             setEnforceSetGoal(false);
             setModalSetGoalsOpen(false);
+            setWeeklyGoalSet(true);
         }  
     });
 
@@ -144,6 +146,7 @@ export default (props) => {
         if (userData._id) {
             const { productivityRecords } = userData;
             const currentProductivityRecord = productivityRecords[productivityRecords.length - 1];
+            console.log(currentProductivityRecord);
             setCurrentProductivityRecord(currentProductivityRecord);
             const suggestedWorkHours = timeFormatter(userData.weeklyProductivityGoal / 7);
             setGoalSuggestion(suggestedWorkHours);
@@ -151,9 +154,15 @@ export default (props) => {
             if (userData.weeklyProductivityGoal === 0) {
                 handleSetGoal(false); // false = weekly
                 setEnforceSetGoal(true);
-            } else if (currentProductivityRecord.productivityGoal === 0) {
-                handleSetGoal(true); // true = today's productivity record
-                setEnforceSetGoal(true);
+            } else {
+                setWeeklyGoalSet(true);
+            } 
+            
+            if (userData.weeklyProductivityGoal > 0 && weeklyGoalSet) {
+                if (!currentProductivityRecord.productivityGoal || currentProductivityRecord.productivityGoal === 0) {
+                    handleSetGoal(true); // true = today's productivity record
+                    setEnforceSetGoal(true);    
+                }
             }
         }
         if (userData.projects && userData.projects.length > 0) {
@@ -175,7 +184,7 @@ export default (props) => {
                 setSelectedProject(selectProject);
             }
         }
-    }, [userData]);
+    }, [userData, weeklyGoalSet]);
 
     useEffect(() => {
         // check if Task.reminderDate === dateTime

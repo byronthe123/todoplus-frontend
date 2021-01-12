@@ -41,7 +41,7 @@ export default ({
                 <h5 className='mt-2' style={{ display: 'inline-block' }}>{task.name}</h5>
                 {
                     isSelectedTask() && 
-                    <div className='float-right mt-2 show-on-hover-tasks'>
+                    <div className='float-right mt-2'>
                         <i className='fas fa-edit mr-2 focus-hover' onClick={() => handleUpdate('Task', task.name)} />
                         <i className='fas fa-hourglass-half focus-hover' onClick={() => setModalSessionOpen(true)} />
                     </div>
