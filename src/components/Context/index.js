@@ -14,8 +14,8 @@ export const AppContext = React.createContext();
 export default (props) => {
 
     const { isLoading, error, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
-    // const baseApiUrl = 'https://todoplus-backend.herokuapp.com/api';
-    const baseApiUrl = 'http://localhost:3001/api';
+    const baseApiUrl = 'https://todoplus-backend.herokuapp.com/api';
+    // const baseApiUrl = 'http://localhost:3001/api';
     const { addToast } = useToasts();
     const [dateTime, setDateTime] = useState(new Date());
 
