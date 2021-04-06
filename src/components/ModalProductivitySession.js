@@ -14,7 +14,7 @@ export default () => {
     const [isRunning, setIsRunning] = useState(false);
     const [exec, setExec] = useState(false);
     const [timer, setTimer] = useState(new Timer());
-    const totalSeconds = 20;
+    const totalSeconds = 1500;
 
     const toggle = () => setModalSessionOpen(!modalSessionOpen);
 
