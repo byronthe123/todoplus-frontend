@@ -12,23 +12,28 @@ export default ({
     const [attachmentsKey, setAttachmentsKey] = useState(0);
 
     const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
-        const byteCharacters = atob(b64Data);
-        const byteArrays = [];
-      
-        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-          const slice = byteCharacters.slice(offset, offset + sliceSize);
-      
-          const byteNumbers = new Array(slice.length);
-          for (let i = 0; i < slice.length; i++) {
-            byteNumbers[i] = slice.charCodeAt(i);
-          }
-      
-          const byteArray = new Uint8Array(byteNumbers);
-          byteArrays.push(byteArray);
+        if (contentType === 'text/plain') {
+            const blob = URL.createObjectURL(new Blob([b64Data] , {type:'text/plain'}));
+            return blob;
+        } else {
+            const byteCharacters = atob(b64Data);
+            const byteArrays = [];
+          
+            for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                const slice = byteCharacters.slice(offset, offset + sliceSize);
+            
+                const byteNumbers = new Array(slice.length);
+                for (let i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+            
+                const byteArray = new Uint8Array(byteNumbers);
+                byteArrays.push(byteArray);
+            }
+          
+            const blob = new Blob(byteArrays, {type: contentType});
+            return blob;
         }
-      
-        const blob = new Blob(byteArrays, {type: contentType});
-        return blob;
     }
     
     const arrayBufferToBase64 = (buffer) => {
@@ -50,7 +55,7 @@ export default ({
     
                 if (data) {
                     const base64 = arrayBufferToBase64(data.data);
-                    const blob = b64toBlob(base64, contentType);
+                    const blob = b64toBlob(contentType === 'text/plain' ? data.data : base64, contentType);
         
                     array.push({
                         name,
@@ -81,8 +86,10 @@ export default ({
                 <h5>Attachments</h5>
                 <ul>
                     {
-                        resolvedAttachments.map((a, i) =>
-                            <li className='attachment' key={i} onClick={() => fileDownload(a.blob, a.name)}>{a.name}</li>
+                        resolvedAttachments.map((a, i) => 
+                            a.contentType === 'text/plain' ?
+                                <a href={a.blob} id="link" download={a.name}>{a.name}</a> :
+                                <li className='attachment' key={i} onClick={() => fileDownload(a.blob, a.name)}>{a.name}</li>
                         )
                     }
                 </ul>

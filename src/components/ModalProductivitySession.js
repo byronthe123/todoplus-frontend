@@ -3,35 +3,54 @@ import { AppContext } from './Context/index';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap';
 import { XYPlot, ArcSeries } from "react-vis";
 import classnames from 'classnames';
+import Timer from "easytimer.js";
 
 export default () => {
 
     const { goals, tasks } = useContext(AppContext);
     const { timeFormatter, modalSessionOpen, setModalSessionOpen, createProductivityEntry } = goals;
     const { selectedTask } = tasks;
+    const [started, setStarted] = useState(false);
     const [isRunning, setIsRunning] = useState(false);
-    const [totalSeconds, setTotalSeconds] = useState(1500);
-    const [seconds, setSeconds] = useState(1500);
+    const [exec, setExec] = useState(false);
+    const [timer, setTimer] = useState(new Timer());
+    const totalSeconds = 20;
 
     const toggle = () => setModalSessionOpen(!modalSessionOpen);
 
     useEffect(() => {
-        setTotalSeconds(1500);
-        setSeconds(1500);
+        timer.reset();
+        timer.stop();
+        setStarted(false);
         setIsRunning(false);
+
+        if (modalSessionOpen) {
+            setExec(false);
+        }
     }, [modalSessionOpen]);
 
-    useEffect(() => {
-        if (isRunning && seconds > 0) {
-            setTimeout(() => {
-                setSeconds(seconds - 1);
-            }, 1000);
+    const handleTimer = () => {
+        if (isRunning) {
+            setIsRunning(false);
+            timer.pause();
+        } else {
+            setStarted(true);
+            setIsRunning(true);
+            timer.start({countdown: true, startValues: { seconds: totalSeconds }});
         }
-        if (seconds === 0) {
+    }
+
+    useEffect(() => {
+        if (exec) {
             createProductivityEntry();
             toggle();
         }
-    }, [isRunning, seconds]);
+    }, [exec]);
+
+    timer.addEventListener('targetAchieved', function (e) {
+        timer.stop();
+        setExec(true);
+    });
 
     return (
         <div>
@@ -42,8 +61,13 @@ export default () => {
                 </ModalHeader>
                 <ModalBody className='py-0'>
                     <Row>
-                        <Col md={12} className='stext-center'>
-                            <h1 className='productivity-session-timer'>{timeFormatter(seconds)}</h1>
+                        <Col md={12} className='text-center'>
+                            {
+                                started ? 
+                                    <h1 className='productivity-session-timer'>{timeFormatter(timer.getTotalTimeValues().seconds)}</h1>
+                                    : 
+                                    <h1 className='productivity-session-timer'>25:00</h1>
+                            }
                             <XYPlot
                                 xDomain={[-3, 3]}
                                 yDomain={[-3, 3]}
@@ -66,7 +90,7 @@ export default () => {
                                     data={[
                                     { total: totalSeconds, radius0: 2, radius: 2.5, color: "#b5b5b7" },
                                     {
-                                        total: ((totalSeconds - seconds) / totalSeconds) * 6.3,
+                                        total: ((totalSeconds -  (started ? timer.getTotalTimeValues().seconds : 1500)) / totalSeconds) * 6.3,
                                         radius0: 2,
                                         radius: 2.5,
                                         color: "#f2b632"
@@ -79,11 +103,11 @@ export default () => {
                     </Row>
                 </ModalBody>
                 <ModalFooter>
-                    <Button className={classnames(isRunning ? 'btn-secondary' : 'btn-submit')} onClick={() => setIsRunning(!isRunning)}>
+                    <Button className={classnames(isRunning ? 'btn-secondary' : 'btn-submit')} onClick={() => handleTimer()}>
                         {
                             isRunning ? 'Pause' : 'Start'
                         }
-                    </Button>{' '}
+                    </Button>
                     <Button color="danger" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>

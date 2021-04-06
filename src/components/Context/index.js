@@ -105,8 +105,11 @@ export default (props) => {
 
     const timeFormatter = (seconds) => {
         const duration = moment.duration(seconds, 'seconds');
-        const formatted = duration.format('hh:mm:ss');
-        return formatted;
+        if (seconds >= 60) {
+            return duration.format('hh:mm:ss');
+        } else {
+            return `00:${duration.format('hh:mm:ss')}`;
+        }
     };
 
     const createProductivityEntry = asyncHandler(async() => {
@@ -188,7 +191,6 @@ export default (props) => {
 
     useEffect(() => {
         // check if Task.reminderDate === dateTime
-        console.log(reminderTasks);
         for (let i = 0; i < reminderTasks.length; i++) {
             const task = reminderTasks[i];
             console.log(`${moment(task.reminderDate).format('MM/DD/YYYY HH:mm')} === ${moment(dateTime).format('MM/DD/YYYY HH:mm')}`);

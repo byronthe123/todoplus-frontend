@@ -20,9 +20,9 @@ export default () => {
     useEffect(() => {
         const percentage = Math.round(productivityAchieved / productivityGoal * 100);
         !isNaN(percentage) && setPercentage(`${percentage}%`);
-        if (percentage.length > 2) {
+        if (percentage.length > 9) {
             setLeftPosition('sp-left-2');
-        } else if (percentage.length > 3) {
+        } else if (percentage > 99) {
             setLeftPosition('sp-left-3');
         }
     }, [productivityGoal, productivityAchieved]);

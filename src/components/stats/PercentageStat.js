@@ -16,6 +16,16 @@ export default ({
 
     const [width, height] = useWindowSize();
 
+    const resolveLeftPercentage = () => {
+        if (percentage && value > 99) {
+            return '80px';
+        } else if (percentage && value < 99) {
+            return '90px';
+        } else if (!percentage) {
+            return '82px'
+        }
+    }
+
     return (
         <Row>
             <Col md={width > 1600 ? 2 : 3}>
@@ -50,7 +60,7 @@ export default ({
                         colorType={"literal"}
                     />
                 </XYPlot>
-                <h5 style={{ position: 'absolute', top: '50px', left: value > 99 ? '80px' : '90px' }}>
+                <h5 style={{ position: 'absolute', top: '50px', left: resolveLeftPercentage() }}>
                     { value }{percentage && '%'}
                 </h5>
             </Col>
